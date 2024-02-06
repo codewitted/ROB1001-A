@@ -2,7 +2,5 @@
 This is team A's repo
 
 Vic
-Ben
+Ben - 96% introvert that has no particular knowledge in any area, except maths
 Kev
-
-I am very confion
