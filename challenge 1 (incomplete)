@@ -5,6 +5,7 @@ from nav_msgs.msg import Odometry
 from std_msgs.msg import Float32
 from sensor_msgs.msg import LaserScan
 from std_msgs.msg import Float32
+import time
 
 class SpeedOdom(Node):
     def __init__(self):
@@ -40,7 +41,7 @@ class SpeedOdom(Node):
         
 
     def lidar_callback(self, msg):
-        danger_dist = 0.5
+        danger_dist = 0.4
         twist_msg = Twist()
         twist_msg.linear.x = 0.2
         
@@ -59,7 +60,7 @@ class SpeedOdom(Node):
 
         if closest_distance <= danger_dist:
             twist_msg.linear.x = 0.0
-            user_input = input("is it safe? (y if is)")
+            user_input = input("should i move? (y if is)")
             if user_input == "y" and not (closest_distance <= danger_dist):
                 twist_msg.linear.x = 0.2
 
@@ -82,9 +83,6 @@ def main(args=None):
 
     speed_odom.destroy_node()
     rclpy.shutdown()
-
-if __name__ == '__main__':
-    main()
 
 if __name__ == '__main__':
     main()
