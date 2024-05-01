@@ -41,7 +41,7 @@ class SpeedOdom(Node):
         
 
     def lidar_callback(self, msg):
-        danger_dist = 0.3
+        danger_dist = 0.4
         twist_msg = Twist()
         twist_msg.linear.x = 0.2
         
@@ -66,7 +66,7 @@ class SpeedOdom(Node):
                 print("y entered")
                 for x in range(0,500):
                     twist_msg.linear.x = 0.0
-                    twist_msg.angular.z = 0.5
+                    twist_msg.angular.z = 1.5
                     
 
 
