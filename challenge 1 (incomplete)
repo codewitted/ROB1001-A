@@ -41,7 +41,7 @@ class SpeedOdom(Node):
         
 
     def lidar_callback(self, msg):
-        danger_dist = 0.4
+        danger_dist = 0.3
         twist_msg = Twist()
         twist_msg.linear.x = 0.2
         
@@ -57,12 +57,18 @@ class SpeedOdom(Node):
 
         # Find the closest distance from the laser scan data
         closest_distance = min(valid_ranges)
-
+        print(closest_distance)
         if closest_distance <= danger_dist:
             twist_msg.linear.x = 0.0
-            user_input = input("should i move? (y if is)")
-            if user_input == "y" and not (closest_distance <= danger_dist):
-                twist_msg.linear.x = 0.2
+            user_input = str(input("should i move? (y if is)\n"))
+            print(user_input)
+            if user_input == "y" and closest_distance <= danger_dist:
+                print("y entered")
+                for x in range(0,500):
+                    twist_msg.linear.x = 0.0
+                    twist_msg.angular.z = 0.5
+                    
+
 
         # Print the closest distance to the terminal
         #print('Closest Distance (m): {}'.format(closest_distance))
